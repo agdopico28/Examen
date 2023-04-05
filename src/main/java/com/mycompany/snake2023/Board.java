@@ -24,8 +24,9 @@ public class Board extends javax.swing.JPanel {
     private Snake snake;
     public static final int NUM_ROWS = 20;
     public static final int NUM_COLS = 20;
-    Timer timer;
-    MyKeyAdapter keyAdapter;
+    private Timer timer;
+    private MyKeyAdapter keyAdapter;
+    private Food food;
     
     class MyKeyAdapter extends KeyAdapter {
         
@@ -85,11 +86,16 @@ public class Board extends javax.swing.JPanel {
         setFocusable(true);
         keyAdapter = new MyKeyAdapter();
         addKeyListener(keyAdapter);
+        food = new Food(snake);
     }
     
     private void tick() {
         if (snake.canMove()) {
             snake.move();
+        }
+        if (snake.eat(food)) {
+            // increment score
+            food = new Food(snake);
         }
         repaint();
     }
@@ -131,6 +137,9 @@ public class Board extends javax.swing.JPanel {
         drawBackground(g);
         if (snake != null) {
             snake.paint(g, getSquareWidth(), getSquareHeight());
+        }
+        if (food != null) {
+            food.paint(g, getSquareWidth(), getSquareHeight());
         }
         Toolkit.getDefaultToolkit().sync();
     }
