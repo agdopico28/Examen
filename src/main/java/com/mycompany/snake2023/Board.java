@@ -79,7 +79,9 @@ public class Board extends javax.swing.JPanel {
         timer = new Timer(250, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
-                tick();
+                if (!keyAdapter.isPaused()) {
+                    tick();
+                }
             }
         });
         timer.start();
