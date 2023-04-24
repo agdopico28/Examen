@@ -30,4 +30,8 @@ public class Food extends Node {
     public int getNodesWhenEat() {
         return 1;
     }
+    
+    public boolean hasToBeErased() {
+        return false;
+    }
 }

@@ -27,6 +27,7 @@ public class Board extends javax.swing.JPanel {
     private Timer timer;
     private MyKeyAdapter keyAdapter;
     private Food food;
+    private FoodFactory foodFactory;
     
     class MyKeyAdapter extends KeyAdapter {
         
@@ -88,7 +89,8 @@ public class Board extends javax.swing.JPanel {
         setFocusable(true);
         keyAdapter = new MyKeyAdapter();
         addKeyListener(keyAdapter);
-        food = new Food(snake);
+        foodFactory = new FoodFactory();
+        food = foodFactory.getFood(snake);
     }
     
     private void tick() {
@@ -97,7 +99,7 @@ public class Board extends javax.swing.JPanel {
         }
         if (snake.eat(food)) {
             // increment score
-            food = new Food(snake);
+            food = foodFactory.getFood(snake);
         }
         repaint();
         Toolkit.getDefaultToolkit().sync();
