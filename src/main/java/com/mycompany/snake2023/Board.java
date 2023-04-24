@@ -100,6 +100,7 @@ public class Board extends javax.swing.JPanel {
             food = new Food(snake);
         }
         repaint();
+        Toolkit.getDefaultToolkit().sync();
     }
 
     /**
@@ -142,8 +143,7 @@ public class Board extends javax.swing.JPanel {
         }
         if (food != null) {
             food.paint(g, getSquareWidth(), getSquareHeight());
-        }
-        Toolkit.getDefaultToolkit().sync();
+        }        
     }
     
     public void drawBackground(Graphics g) {        

@@ -124,9 +124,10 @@ public class Snake {
         }
     }
     
+    
     public boolean eat(Food food) {
         if (getHeaderRow() == food.getRow() && getHeaderCol() == food.getCol()) {
-            toGrow ++;
+            toGrow += food.getNodesWhenEat();
             return true;
         }
         return false;
