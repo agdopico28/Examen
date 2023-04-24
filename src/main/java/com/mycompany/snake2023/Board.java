@@ -6,6 +6,7 @@ package com.mycompany.snake2023;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Dialog;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Toolkit;
@@ -13,6 +14,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 
 /**
@@ -95,17 +99,32 @@ public class Board extends javax.swing.JPanel {
     
     private void tick() {
         if (snake.canMove()) {
-            snake.move();
+            snake.move();            
+            if (snake.eat(food)) {
+                // increment score
+                food = foodFactory.getFood(snake);
+            }
+            if (food.hasToBeErased()) {
+                food = foodFactory.getFood(snake);
+            }        
+        } else {
+            processGameOver();
         }
-        if (snake.eat(food)) {
-            // increment score
-            food = foodFactory.getFood(snake);
-        }
-        if (food.hasToBeErased()) {
-            food = foodFactory.getFood(snake);
-        }
+        
         repaint();
         Toolkit.getDefaultToolkit().sync();
+    }
+    
+    private void processGameOver() {
+        timer.stop();
+        removeKeyListener(keyAdapter);
+        int answer = JOptionPane.showConfirmDialog(
+            this, "New Game?",
+                   "Game Over", JOptionPane.YES_NO_OPTION);
+        // JFrame parentJFrame = (JFrame) SwingUtilities.getWindowAncestor(this); 
+        // HighScoresDialog dialog = new HighScoresDialog(parentJFrame ,true);
+        // dialog.setGetScorer(getScorer);
+        // dialog.setVisible(true);
     }
 
     /**
