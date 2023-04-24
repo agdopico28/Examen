@@ -97,7 +97,7 @@ public class Board extends javax.swing.JPanel {
         if (snake.canMove()) {
             snake.move();
         }
-        if (snake.eat(food)) {
+        if (snake.eat(food) || food.hasToBeErased()) {
             // increment score
             food = foodFactory.getFood(snake);
         }
