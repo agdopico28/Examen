@@ -32,6 +32,7 @@ public class Board extends javax.swing.JPanel {
     private MyKeyAdapter keyAdapter;
     private Food food;
     private FoodFactory foodFactory;
+    private ScoreInterface scoreInterface;
     
     class MyKeyAdapter extends KeyAdapter {
         
@@ -96,10 +97,17 @@ public class Board extends javax.swing.JPanel {
         initGame();
     }
     
+    public void setScoreInterface(ScoreInterface scoreInterface) {
+        this.scoreInterface = scoreInterface;
+    }
+    
     private void initGame() {
         snake = new Snake(4);
         food = foodFactory.getFood(snake);
         addKeyListener(keyAdapter);
+        if (scoreInterface != null) {
+            scoreInterface.reset();
+        }
         timer.start();
     }
     
@@ -107,7 +115,7 @@ public class Board extends javax.swing.JPanel {
         if (snake.canMove()) {
             snake.move();
             if (snake.eat(food)) {
-                // increment score
+                scoreInterface.increment(food.getPoints());
                 food = foodFactory.getFood(snake);
             }
             if (food.hasToBeErased()) {
@@ -125,7 +133,7 @@ public class Board extends javax.swing.JPanel {
         timer.stop();
         removeKeyListener(keyAdapter);
         int answer = JOptionPane.showConfirmDialog(
-            this, "New Game?",
+            this,  scoreInterface.getScore() + " points\nNew Game?",
                    "Game Over", JOptionPane.YES_NO_OPTION);
         if (answer == 0) {
             initGame();

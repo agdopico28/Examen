@@ -15,6 +15,7 @@ public class SnakeGame extends javax.swing.JFrame {
      */
     public SnakeGame() {
         initComponents();
+        board.setScoreInterface(scoreBoard);
     }
 
     /**
@@ -27,23 +28,23 @@ public class SnakeGame extends javax.swing.JFrame {
     private void initComponents() {
 
         scoreBoard = new com.mycompany.snake2023.ScoreBoard();
-        board1 = new com.mycompany.snake2023.Board();
+        board = new com.mycompany.snake2023.Board();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().add(scoreBoard, java.awt.BorderLayout.PAGE_START);
 
-        javax.swing.GroupLayout board1Layout = new javax.swing.GroupLayout(board1);
-        board1.setLayout(board1Layout);
-        board1Layout.setHorizontalGroup(
-            board1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout boardLayout = new javax.swing.GroupLayout(board);
+        board.setLayout(boardLayout);
+        boardLayout.setHorizontalGroup(
+            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 400, Short.MAX_VALUE)
         );
-        board1Layout.setVerticalGroup(
-            board1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        boardLayout.setVerticalGroup(
+            boardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 282, Short.MAX_VALUE)
         );
 
-        getContentPane().add(board1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(board, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -84,7 +85,7 @@ public class SnakeGame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.mycompany.snake2023.Board board1;
+    private com.mycompany.snake2023.Board board;
     private com.mycompany.snake2023.ScoreBoard scoreBoard;
     // End of variables declaration//GEN-END:variables
 }

@@ -34,6 +34,10 @@ public class SpecialFood extends Food {
         return 3;
     }
     
+    @Override
+    public int getPoints() {
+        return 50;
+    }
     
     public int getTimeVisible() {
         return timeVisible;

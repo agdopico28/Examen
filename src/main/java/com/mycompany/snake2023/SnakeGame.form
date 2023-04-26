@@ -30,7 +30,7 @@
         </Constraint>
       </Constraints>
     </Component>
-    <Container class="com.mycompany.snake2023.Board" name="board1">
+    <Container class="com.mycompany.snake2023.Board" name="board">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="Center"/>

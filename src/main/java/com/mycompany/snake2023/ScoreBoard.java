@@ -8,13 +8,37 @@ package com.mycompany.snake2023;
  *
  * @author victor
  */
-public class ScoreBoard extends javax.swing.JPanel {
+public class ScoreBoard extends javax.swing.JPanel implements ScoreInterface {
+    
+    private int score;
 
     /**
      * Creates new form ScoreBoard
      */
     public ScoreBoard() {
         initComponents();
+        score = 0;
+    }
+    
+    @Override
+    public void reset() {
+        score = 0;
+        updateLabel();
+    }
+
+    @Override
+    public void increment(int increment) {
+        score += increment;
+        updateLabel();
+    }
+
+    @Override
+    public int getScore() {
+        return score;
+    }
+    
+    public void updateLabel() {
+       scoreLabel.setText("" + score);
     }
 
     /**
@@ -26,17 +50,19 @@ public class ScoreBoard extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        scoreLabel = new javax.swing.JLabel();
 
         setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("jLabel1");
-        add(jLabel1, new java.awt.GridBagConstraints());
+        scoreLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scoreLabel.setText("0");
+        add(scoreLabel, new java.awt.GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel scoreLabel;
     // End of variables declaration//GEN-END:variables
+
+    
 }

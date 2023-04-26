@@ -27,6 +27,10 @@ public class Food extends Node {
         Util.drawSquare(g, getRow(), getCol(), NodeType.FOOD, squareWidth, squareHeight);
     }
     
+    public int getPoints() {
+        return 10;
+    }
+    
     public int getNodesWhenEat() {
         return 1;
     }
