@@ -80,7 +80,7 @@ public class Board extends javax.swing.JPanel {
     
     public Board() {
         initComponents();
-        snake = new Snake(4);
+        
         timer = new Timer(250, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -89,17 +89,23 @@ public class Board extends javax.swing.JPanel {
                 }
             }
         });
-        timer.start();
+        
         setFocusable(true);
         keyAdapter = new MyKeyAdapter();
-        addKeyListener(keyAdapter);
         foodFactory = new FoodFactory();
+        initGame();
+    }
+    
+    private void initGame() {
+        snake = new Snake(4);
         food = foodFactory.getFood(snake);
+        addKeyListener(keyAdapter);
+        timer.start();
     }
     
     private void tick() {
         if (snake.canMove()) {
-            snake.move();            
+            snake.move();
             if (snake.eat(food)) {
                 // increment score
                 food = foodFactory.getFood(snake);
@@ -121,6 +127,11 @@ public class Board extends javax.swing.JPanel {
         int answer = JOptionPane.showConfirmDialog(
             this, "New Game?",
                    "Game Over", JOptionPane.YES_NO_OPTION);
+        if (answer == 0) {
+            initGame();
+        } else {
+            System.exit(0);
+        }
         // JFrame parentJFrame = (JFrame) SwingUtilities.getWindowAncestor(this); 
         // HighScoresDialog dialog = new HighScoresDialog(parentJFrame ,true);
         // dialog.setGetScorer(getScorer);
