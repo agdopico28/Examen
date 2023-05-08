@@ -78,7 +78,7 @@ public class Board extends javax.swing.JPanel {
     
     public Board() {
         initComponents();
-        
+
         timer = new Timer(250, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
@@ -169,7 +169,7 @@ public class Board extends javax.swing.JPanel {
     int getSquareHeight() {
         return getHeight() / NUM_ROWS;
     }
-    
+  
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
