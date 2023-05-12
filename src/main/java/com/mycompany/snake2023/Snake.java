@@ -4,10 +4,6 @@
  */
 package com.mycompany.snake2023;
 
-import static com.mycompany.snake2023.Direction.DOWN;
-import static com.mycompany.snake2023.Direction.LEFT;
-import static com.mycompany.snake2023.Direction.RIGHT;
-import static com.mycompany.snake2023.Direction.UP;
 import java.awt.Graphics;
 import java.util.*;
 
@@ -19,7 +15,7 @@ public class Snake {
     private List<Node> list;
     private Direction direction;
     private int toGrow;
-
+ 
     public Snake(int numNodes) {
         list = new ArrayList<>();
         int row = Board.NUM_ROWS / 2;

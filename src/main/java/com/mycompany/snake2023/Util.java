@@ -17,8 +17,9 @@ public class Util {
             NodeType nodeType, int squareWidth, int squareHeight) {
         Color colors[] = {
             new Color(204, 102, 102),
-            new Color(102, 204, 102), new Color(102, 102, 204) ,  
-                new Color(102, 200, 204)
+            new Color(102, 204, 102), 
+            new Color(102, 102, 204),  
+            new Color(102, 200, 204)
         };
         int x = col * squareWidth;
         int y = row * squareHeight;
