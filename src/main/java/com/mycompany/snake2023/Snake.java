@@ -15,27 +15,50 @@ public class Snake {
     private List<Node> list;
     private Direction direction;
     private int toGrow;
+    private int numJugador;
  
-    public Snake(int numNodes) {
+    public Snake(int numNodes, int numJugador) {
         list = new ArrayList<>();
-        int row = Board.NUM_ROWS / 2;
-        int col = Board.NUM_COLS / 3;
-        for (int i = 0; i < numNodes; i ++) {
-            list.add(new Node(row, col - i));
+        this.numJugador = numJugador;
+        if(numJugador == 0){
+            int row = Board.NUM_ROWS / 2;
+            int col = Board.NUM_COLS / 3;
+            for (int i = 0; i < numNodes; i ++) {
+                list.add(new Node(row, col - i));
+            }
+        }else if (numJugador == 1){
+            int row = Board.NUM_ROWS / 3;
+            int col = Board.NUM_COLS / 3;
+            for (int i = 0; i < numNodes; i ++) {
+                list.add(new Node(row, col - i));
+            }
         }
         direction = Direction.RIGHT;
         toGrow = 0;
     }
     
     public void paint(Graphics g, int squareWidth, int squareHeight) {
-        boolean first = true;
-        for (Node node: list) {
-            int row = node.getRow();
-            int col = node.getCol();            
-            Util.drawSquare(g, row, col, 
-                    first ? NodeType.HEAD : NodeType.BODY, 
-                    squareWidth, squareHeight);
-            first = false;
+        boolean first1 = true;
+        if(numJugador == 0){
+            for (Node node: list) {
+                int row = node.getRow();
+                int col = node.getCol();            
+                Util.drawSquare(g, row, col, 
+                        first1 ? NodeType.HEAD : NodeType.BODY, 
+                        squareWidth, squareHeight);
+                first1 = false;
+            }
+        }
+        boolean first2 = true;
+        if (numJugador == 1){
+            for (Node node: list) {
+                int row = node.getRow();
+                int col = node.getCol();            
+                Util.drawSquare(g, row, col, 
+                        first2 ? NodeType.HEAD2 : NodeType.BODY2, 
+                        squareWidth, squareHeight);
+                first2 = false;
+            }
         }
     }
     
@@ -47,6 +70,7 @@ public class Snake {
         return list.get(0).getCol();
     }
     
+    
     public Direction getDirection() {
         return direction;
     }
@@ -55,36 +79,47 @@ public class Snake {
         this.direction = direction;
     }
     
-    public boolean contains(int row, int col) {       
-        for (Node node: list) {
+    public boolean contains1(int row, int col, Snake snake1) {       
+        for (Node node: snake1.list) {
             if (node.getRow() == row && node.getCol() == col) {
                 return true;
             }
         }
         return false;
+        
     }
     
-    public boolean canMove() {
+    public boolean contains2(int row, int col, Snake snake2) {       
+        for (Node node: snake2.list) {
+            if (node.getRow() == row && node.getCol() == col) {
+                return true;
+            }
+        }
+        return false;
+        
+    }
+    
+    public boolean canMove(Snake snake1,Snake snake2) {
         int row = getHeaderRow();
         int col = getHeaderCol();
         switch (direction) {
             case UP:
-                if (row - 1 < 0 || contains(row - 1, col)) {
+                if (row - 1 < 0 || contains1(row - 1, col, snake1) || contains2(row - 1, col, snake2)) {
                     return false;
                 }
                 break;
             case DOWN:
-                if (row + 1 >= Board.NUM_ROWS || contains(row + 1, col)) {
+                if (row + 1 >= Board.NUM_ROWS || contains1(row + 1, col, snake1) || contains2(row + 1, col, snake2)) {
                     return false;
                 }
                 break;
             case LEFT:
-                if (col - 1 < 0 || contains(row, col - 1)) {
+                if (col - 1 < 0 || contains1(row, col - 1, snake1) || contains2(row, col - 1, snake2)) {
                     return false;
                 }
                 break;
             case RIGHT:
-                if (col + 1 >= Board.NUM_COLS || contains(row, col + 1)) {
+                if (col + 1 >= Board.NUM_COLS || contains1(row, col + 1, snake1) || contains2(row, col + 1, snake2)) {
                     return false;
                 }
                 break;

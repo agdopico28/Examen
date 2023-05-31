@@ -9,5 +9,5 @@ package com.mycompany.snake2023;
  * @author victor
  */
 public enum NodeType {
-    HEAD, BODY, FOOD, SPECIAL_FOOD
+    HEAD, BODY, FOOD, SPECIAL_FOOD, HEAD2, BODY2
 }

@@ -19,7 +19,9 @@ public class Util {
             new Color(204, 102, 102),
             new Color(102, 204, 102), 
             new Color(102, 102, 204),  
-            new Color(102, 200, 204)
+            new Color(102, 200, 204),
+            new Color(200, 50, 50),
+            new Color(100, 100, 100)
         };
         int x = col * squareWidth;
         int y = row * squareHeight;

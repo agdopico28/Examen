@@ -10,35 +10,49 @@ package com.mycompany.snake2023;
  */
 public class ScoreBoard extends javax.swing.JPanel implements ScoreInterface {
     
-    private int score;
+    private int score1;
+    private int score2;
 
     /**
      * Creates new form ScoreBoard
      */
     public ScoreBoard() {
         initComponents();
-        score = 0;
+        score1 = 0;
+        score2 = 0;
     }
     
     @Override
     public void reset() {
-        score = 0;
-        updateLabel();
+        score1 = 0;
+        score2 = 0;
+        updateLabel1();
+        updateLabel2();
     }
 
     @Override
-    public void increment(int increment) {
-        score += increment;
-        updateLabel();
-    }
-
-    @Override
-    public int getScore() {
-        return score;
+    public void increment1(int increment) {
+        score1 += increment;
+        updateLabel1();
     }
     
-    public void updateLabel() {
-       scoreLabel.setText("" + score);
+    @Override
+    public void increment2(int increment) {
+        score2 += increment;
+        updateLabel2();
+    }
+
+    @Override
+    public int getScore1() {
+        return score1;
+    }
+    
+    public void updateLabel1() {
+       scoreLabel.setText("" + score1);
+    }
+
+    public void updateLabel2() {
+       lScore.setText("" + score2);
     }
 
     /**
@@ -51,18 +65,54 @@ public class ScoreBoard extends javax.swing.JPanel implements ScoreInterface {
     private void initComponents() {
 
         scoreLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lScore = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
-        setLayout(new java.awt.GridBagLayout());
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         scoreLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         scoreLabel.setText("0");
-        add(scoreLabel, new java.awt.GridBagConstraints());
+        add(scoreLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, -1, -1));
+
+        jLabel1.setText("Jugador 1:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
+
+        jLabel2.setText("Jugador 2:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 10, -1, -1));
+
+        lScore.setText("0");
+        add(lScore, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, -1, -1));
+
+        jLabel3.setText("p -");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 10, -1, -1));
+
+        jLabel4.setText("p");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 10, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel lScore;
     private javax.swing.JLabel scoreLabel;
     // End of variables declaration//GEN-END:variables
+
+    
+
+    @Override
+    public int getScore2() {
+        return score2;
+    }
+
+    
+
+    
 
     
 }

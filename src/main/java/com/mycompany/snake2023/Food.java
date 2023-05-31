@@ -15,7 +15,7 @@ public class Food extends Node {
         super(0,0);
         int row = (int) (Math.random() * Board.NUM_ROWS);
         int col = (int) (Math.random() * Board.NUM_COLS);
-        while (snake.contains(row, col)) {
+        while (snake.contains1(row, col,snake) && snake.contains2(row, col,snake)) {
             row = (int) (Math.random() * Board.NUM_ROWS);
             col = (int) (Math.random() * Board.NUM_COLS);
         }

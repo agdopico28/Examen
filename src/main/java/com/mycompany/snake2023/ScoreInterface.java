@@ -9,7 +9,9 @@ package com.mycompany.snake2023;
  * @author victor
  */
 public interface ScoreInterface {
-    public void increment(int increment);
-    public int getScore();
+    public void increment1(int increment);
+    public void increment2(int increment);
+    public int getScore1();
+    public int getScore2();
     public void reset();
 }
